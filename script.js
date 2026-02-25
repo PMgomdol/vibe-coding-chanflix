@@ -11,6 +11,8 @@
   };
 
   const intro = document.getElementById('intro');
+  const introVideo = document.getElementById('introVideo');
+  const introFallback = document.getElementById('introFallback');
   const hero = document.getElementById('hero');
   const heroBackdrop = document.getElementById('heroBackdrop');
   const heroVideoWrap = document.getElementById('heroVideoWrap');
@@ -45,13 +47,29 @@
     return div.innerHTML;
   }
 
-  // ===== 인트로: 영화 시작 연출 후 메인 노출 =====
+  // ===== 인트로: 영화관 입장 영상 재생 후 메인 노출 =====
+  function hideIntro() {
+    intro.classList.add('is-hidden');
+    document.body.style.overflow = '';
+  }
+
   function startIntro() {
     document.body.style.overflow = 'hidden';
-    setTimeout(function () {
-      intro.classList.add('is-hidden');
-      document.body.style.overflow = '';
-    }, 4800);
+
+    if (introVideo && introVideo.querySelector('source')) {
+      intro.classList.add('has-video');
+      introVideo.play().catch(function () {
+        intro.classList.remove('has-video');
+        setTimeout(hideIntro, 4800);
+      });
+      introVideo.addEventListener('ended', hideIntro, { once: true });
+      introVideo.addEventListener('error', function () {
+        intro.classList.remove('has-video');
+        setTimeout(hideIntro, 4800);
+      }, { once: true });
+    } else {
+      setTimeout(hideIntro, 4800);
+    }
   }
 
   // ===== 예고편 YouTube 키 가져오기 =====

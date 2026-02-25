@@ -10,10 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- 영화 시작 인트로 -->
+  <!-- 영화 시작 인트로 (영화관 입장 영상) -->
   <div class="intro" id="intro">
-    <div class="intro-curtain"></div>
-    <div class="intro-content">
+    <video class="intro-video" id="introVideo" playsinline muted autoplay>
+      <source src="assets/intro.mp4" type="video/mp4">
+    </video>
+    <div class="intro-content intro-content--fallback" id="introFallback">
       <div class="intro-logo">Chanflix</div>
       <p class="intro-tagline">현재 상영 중인 영화</p>
       <div class="intro-countdown">
