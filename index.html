@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chanflix - 현재 상영 중</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 영화 시작 인트로 -->
+  <div class="intro" id="intro">
+    <div class="intro-curtain"></div>
+    <div class="intro-content">
+      <div class="intro-logo">Chanflix</div>
+      <p class="intro-tagline">현재 상영 중인 영화</p>
+      <div class="intro-countdown">
+        <span class="intro-dot"></span>
+        <span class="intro-dot"></span>
+        <span class="intro-dot"></span>
+      </div>
+      <p class="intro-text">영화가 곧 시작됩니다</p>
+    </div>
+    <div class="intro-scanlines" aria-hidden="true"></div>
+  </div>
+
+  <header class="header">
+    <h1 class="logo">Chanflix</h1>
+    <p class="tagline">현재 상영 중인 영화</p>
+  </header>
+
+  <main class="main">
+    <!-- 메인 픽처 (예고편) -->
+    <section class="hero" id="hero">
+      <div class="hero-backdrop" id="heroBackdrop"></div>
+      <div class="hero-gradient"></div>
+      <div class="hero-video-wrap" id="heroVideoWrap">
+        <iframe id="heroTrailer" class="hero-trailer" src="" title="예고편" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="hero-info">
+        <span class="hero-badge" id="heroBadge">지금 상영 중</span>
+        <h2 class="hero-title" id="heroTitle">로딩 중...</h2>
+        <p class="hero-overview" id="heroOverview"></p>
+      </div>
+      <div class="hero-shine" aria-hidden="true"></div>
+    </section>
+
+    <section class="movies-section">
+      <h2 class="section-title">지금 극장에서</h2>
+      <div id="movies-grid" class="movies-grid">
+        <div class="loading" id="loading">영화 목록을 불러오는 중...</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 영화 상세 모달 -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="닫기">&times;</button>
+      <div class="modal-poster-wrap">
+        <img class="modal-poster" id="modalPoster" src="" alt="">
+      </div>
+      <div class="modal-info">
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <p class="modal-overview" id="modalOverview"></p>
+        <p class="modal-meta" id="modalMeta"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
