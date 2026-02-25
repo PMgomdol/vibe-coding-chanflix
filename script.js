@@ -12,6 +12,7 @@
 
   const intro = document.getElementById('intro');
   const introVideo = document.getElementById('introVideo');
+  const introAudio = document.getElementById('introAudio');
   const introFallback = document.getElementById('introFallback');
   const hero = document.getElementById('hero');
   const heroBackdrop = document.getElementById('heroBackdrop');
@@ -47,8 +48,12 @@
     return div.innerHTML;
   }
 
-  // ===== 인트로: 영화관 입장 영상 재생 후 메인 노출 =====
+  // ===== 인트로: 영화관 입장 영상(2배속) + 효과음 재생 후 메인 노출 =====
   function hideIntro() {
+    if (introAudio) {
+      introAudio.pause();
+      introAudio.currentTime = 0;
+    }
     intro.classList.add('is-hidden');
     document.body.style.overflow = '';
   }
@@ -57,6 +62,7 @@
     document.body.style.overflow = 'hidden';
 
     if (introVideo && introVideo.querySelector('source')) {
+      introVideo.playbackRate = 2;
       intro.classList.add('has-video');
       introVideo.play().catch(function () {
         intro.classList.remove('has-video');
@@ -67,6 +73,9 @@
         intro.classList.remove('has-video');
         setTimeout(hideIntro, 4800);
       }, { once: true });
+      if (introAudio && introAudio.querySelector('source')) {
+        introAudio.play().catch(function () {});
+      }
     } else {
       setTimeout(hideIntro, 4800);
     }
